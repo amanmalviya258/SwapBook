@@ -23,10 +23,9 @@ import {
   Input,
   Stack,
   Flex,
-  IconButton,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { useUploadFile, useDownloadURL } from "react-firebase-hooks/storage";
+import { useUploadFile } from "react-firebase-hooks/storage";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage, firestore } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -39,10 +38,10 @@ import { FaCrosshairs } from "react-icons/fa";
 const Navbar = () => {
   const { setOpen } = useModalStore();
   const { setBook } = useBooksStore();
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const [signOut] = useSignOut(auth);
-  const [uploadFile, uploading, snapshot] = useUploadFile();
+  const [uploadFile] = useUploadFile();
 
   const [isbn, setIsbn] = useState("");
   const [images, setImages] = useState<File | null>(null);
